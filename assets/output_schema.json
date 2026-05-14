@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Hermes B2B LinkedIn Contact Finder Output",
+  "type": "object",
+  "properties": {
+    "company": { "type": "string" },
+    "officialDomain": { "type": ["string", "null"] },
+    "companyLinkedInUrl": { "type": ["string", "null"] },
+    "companyPeopleUrl": { "type": ["string", "null"] },
+    "fullName": { "type": ["string", "null"] },
+    "title": { "type": ["string", "null"] },
+    "roleFamily": { "type": ["string", "null"] },
+    "profileUrl": { "type": ["string", "null"] },
+    "status": {
+      "type": "string",
+      "enum": ["unchecked", "accepted", "candidate", "rejected", "needs_manual_review", "not_found"]
+    },
+    "b2bScore": { "type": ["number", "null"] },
+    "confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+    "foundBy": {
+      "type": ["string", "null"],
+      "enum": [null, "official_site", "linkedin_company_people", "company_grounded_search", "manual_operator", "other"]
+    },
+    "searchQuery": { "type": ["string", "null"] },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "url": { "type": ["string", "null"] },
+          "text": { "type": ["string", "null"] },
+          "extractedAt": { "type": ["string", "null"] }
+        },
+        "required": ["type"]
+      }
+    },
+    "notes": { "type": ["string", "null"] }
+  },
+  "required": ["company", "status", "evidence"]
+}
